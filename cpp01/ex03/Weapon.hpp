@@ -6,21 +6,25 @@
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 02:09:18 by wel-safa          #+#    #+#             */
-/*   Updated: 2025/06/06 02:10:57 by wel-safa         ###   ########.fr       */
+/*   Updated: 2025/06/06 18:36:18 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <string>
 
 #ifndef WEAPON_HPP
 # define WEAPON_HPP
 
+#include <string>
+
 class Weapon {
-	
+
 public:
+	Weapon(std::string type);
+	
+	const std::string&	getType() const;
+	void				setType(const std::string& type);
 	
 private:
-	std::string type;
+	std::string _type;
 };
 
 

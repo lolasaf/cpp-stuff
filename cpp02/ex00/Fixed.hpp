@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 16:54:55 by wel-safa          #+#    #+#             */
-/*   Updated: 2025/06/06 18:35:15 by wel-safa         ###   ########.fr       */
+/*   Created: 2025/06/07 17:34:06 by wel-safa          #+#    #+#             */
+/*   Updated: 2025/06/07 19:57:07 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#ifndef FIXED_HPP
+# define FIXED_HPP
+ 
+class Fixed {
 
-# include "Weapon.hpp"
-#include <iostream>
-#include <string>
-
-class HumanB {
-	
 public:
-	HumanB(std::string name);
-	void	setWeapon(Weapon& weapon);
-	void	attack() const;
+	Fixed(); // constructor
+	Fixed(const Fixed& other); // copy constructor
+	Fixed& operator=(const Fixed& other); // copy assignment operator
+	~Fixed();
+
+	int getRawBits(void) const;
+	void	setRawBits(int const raw);
 
 private:
-	std::string	_name;
-	Weapon*		_weapon;
-
+	int					_rawBits;
+	static const int	_fractionalBits;
 };
 
 #endif

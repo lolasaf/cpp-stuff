@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 16:54:55 by wel-safa          #+#    #+#             */
-/*   Updated: 2025/06/06 18:35:15 by wel-safa         ###   ########.fr       */
+/*   Created: 2025/06/06 22:34:41 by wel-safa          #+#    #+#             */
+/*   Updated: 2025/06/06 22:43:24 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#include "Harl.hpp"
 
-# include "Weapon.hpp"
-#include <iostream>
-#include <string>
+int	main( void ) {
+	Harl h;
 
-class HumanB {
-	
-public:
-	HumanB(std::string name);
-	void	setWeapon(Weapon& weapon);
-	void	attack() const;
+	h.complain("DEBUG");
+	h.complain("INFO");
+	h.complain("WARNING");
+	h.complain("ERROR");
+	h.complain("");
+	h.complain("REGERG");
 
-private:
-	std::string	_name;
-	Weapon*		_weapon;
-
-};
-
-#endif
+	return 0;
+}

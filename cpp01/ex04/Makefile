@@ -5,16 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/06/06 15:51:09 by wel-safa          #+#    #+#              #
-#    Updated: 2025/06/06 17:17:53 by wel-safa         ###   ########.fr        #
+#    Created: 2025/06/06 19:01:11 by wel-safa          #+#    #+#              #
+#    Updated: 2025/06/06 22:33:39 by wel-safa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= unnecessaryViolence
+NAME	= sedIs4LoserZ
 CXX		= c++
 CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
-SRCS	= main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+SRCS	= main.cpp
 OBJS	= $(SRCS:.cpp=.o)
 
 all: $(NAME)

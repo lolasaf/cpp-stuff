@@ -6,7 +6,7 @@
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:44:43 by wel-safa          #+#    #+#             */
-/*   Updated: 2026/01/14 21:23:46 by wel-safa         ###   ########.fr       */
+/*   Updated: 2026/01/14 22:27:54 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 #include <cstdlib>
 #include <ctime>
 
@@ -51,7 +52,7 @@ int main()
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 
-	std::cout << std::endl << "=== SHRUBBERY CREATION FORM TESTS ===" << std::endl;
+	std::cout << std::endl << std::endl << "=== SHRUBBERY CREATION FORM TESTS ===" << std::endl << std::endl;
 
 	// Test ShrubberyCreationForm - successful execution
 	try {
@@ -94,7 +95,7 @@ int main()
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 
-	std::cout << std::endl << "=== ROBOTOMY REQUEST FORM TESTS ===" << std::endl;
+	std::cout << std::endl << std::endl << "=== ROBOTOMY REQUEST FORM TESTS ===" << std::endl << std::endl;
 
 	// Test RobotomyRequestForm - multiple executions to see 50% success rate
 	try {
@@ -127,7 +128,7 @@ int main()
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 
-	std::cout << std::endl << "=== PRESIDENTIAL PARDON FORM TESTS ===" << std::endl;
+	std::cout << std::endl << std::endl << "=== PRESIDENTIAL PARDON FORM TESTS ===" << std::endl << std::endl;
 
 	// Test PresidentialPardonForm - successful
 	try {
@@ -167,7 +168,7 @@ int main()
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 
-	std::cout << std::endl << "=== POLYMORPHISM TESTS ===" << std::endl;
+	std::cout << std::endl << std::endl << "=== POLYMORPHISM TESTS ===" << std::endl << std::endl;
 
 	// Test polymorphism with AForm pointers
 	try {
@@ -193,7 +194,7 @@ int main()
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 
-	std::cout << std::endl << "=== COPY TESTS ===" << std::endl;
+	std::cout << std::endl << std::endl << "=== COPY TESTS ===" << std::endl << std::endl;
 
 	// Test copy constructor for derived forms
 	try {
@@ -201,6 +202,57 @@ int main()
 		ShrubberyCreationForm copied(original);
 		std::cout << "Original: " << original << std::endl;
 		std::cout << "Copied: " << copied << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	std::cout << std::endl << std::endl << "=== INTERN TESTS ===" << std::endl << std::endl;
+
+	// Test Intern creating valid forms
+	try {
+		Intern someRandomIntern;
+		Bureaucrat boss("Boss", 1);
+		AForm* form;
+
+		// Create shrubbery creation form
+		form = someRandomIntern.makeForm("shrubbery creation", "backyard");
+		std::cout << *form << std::endl;
+		boss.signForm(*form);
+		boss.executeForm(*form);
+		delete form;
+
+		std::cout << std::endl;
+
+		// Create robotomy request form
+		form = someRandomIntern.makeForm("robotomy request", "Bender");
+		std::cout << *form << std::endl;
+		boss.signForm(*form);
+		boss.executeForm(*form);
+		delete form;
+
+		std::cout << std::endl;
+
+		// Create presidential pardon form
+		form = someRandomIntern.makeForm("presidential pardon", "Marvin");
+		std::cout << *form << std::endl;
+		boss.signForm(*form);
+		boss.executeForm(*form);
+		delete form;
+	}
+	catch (const std::exception& e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	// Test Intern with unknown form type
+	std::cout << std::endl << "Testing unknown form type:" << std::endl;
+	try {
+		Intern intern;
+		AForm* form = intern.makeForm("coffee request", "everyone");
+		delete form;  // Won't reach here
+	}
+	catch (const Intern::UnknownFormException& e) {
+		std::cerr << "Caught: " << e.what() << std::endl;
 	}
 	catch (const std::exception& e) {
 		std::cerr << "Exception: " << e.what() << std::endl;

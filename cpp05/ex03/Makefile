@@ -6,7 +6,7 @@
 #    By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 22:56:09 by wel-safa          #+#    #+#              #
-#    Updated: 2026/01/14 21:20:31 by wel-safa         ###   ########.fr        #
+#    Updated: 2026/01/14 22:26:50 by wel-safa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= bureaucrat
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
-SRCS		= main.cpp Bureaucrat.cpp AForm.cpp \
+SRCS		= main.cpp Bureaucrat.cpp AForm.cpp Intern.cpp \
 			  ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJS		= $(SRCS:.cpp=.o)
 

@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 20:04:33 by wel-safa          #+#    #+#             */
-/*   Updated: 2026/01/14 20:06:48 by wel-safa         ###   ########.fr       */
+/*   Created: 2026/01/07 23:30:02 by wel-safa          #+#    #+#             */
+/*   Updated: 2026/01/08 00:15:24 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+# define SHRUBBERYCREATIONFORM_HPP
 
 # include "AForm.hpp"
 # include <string>
+# include <fstream>
 
-class PresidentialPardonForm : public AForm {
+class ShrubberyCreationForm : public AForm {
 public:
-	PresidentialPardonForm();
-	PresidentialPardonForm(const PresidentialPardonForm& other);
-	PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
-	~PresidentialPardonForm();
+	ShrubberyCreationForm();
+	ShrubberyCreationForm(const ShrubberyCreationForm& other);
+	ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+	~ShrubberyCreationForm();
 	
-	PresidentialPardonForm(const std::string& target);
+	ShrubberyCreationForm(const std::string& target);
 
+	class FileCreationException : public std::exception {
+	public:
+		virtual const char* what() const throw() {
+			return "Failed to create file!";
+		}
+	};
+	
 protected:
 	virtual void	executeAction() const;
-	
+
 private:
 	std::string _target;
 

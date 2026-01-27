@@ -1,39 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/27 21:41:39 by wel-safa          #+#    #+#             */
+/*   Updated: 2026/01/27 21:57:59 by wel-safa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Span.hpp"
 
-// TODO: Implement all member functions
-// Remember: Template member functions (like addRange) should be in the header file!
+Span::Span(unsigned int maxSize) : N(maxSize) {
+	numbers.reserve(maxSize);
+}
 
-// TODO: Implement constructor
-// Span::Span(unsigned int N) : ... {
-//     // Initialize max size and container
-// }
+Span::Span(const Span& other) : N(other.N), numbers(other.numbers) {}
 
-// TODO: Implement addNumber
-// void Span::addNumber(int number) {
-//     // Check if at capacity
-//     // If yes, throw SpanFullException
-//     // If no, add the number
-// }
+Span& Span::operator=(const Span& other) {
+	if (this != &other) {
+		N = other.N;
+		numbers = other.numbers;
+	}
+	return *this;
+}
 
-// TODO: Implement shortestSpan
-// unsigned int Span::shortestSpan() const {
-//     // Check if size < 2, throw NoSpanException
-//     // Make a copy of the container (since we need to sort)
-//     // Sort the copy
-//     // Find minimum difference between adjacent elements
-//     // Return the minimum difference
-// }
+Span::~Span() {}
 
-// TODO: Implement longestSpan
-// unsigned int Span::longestSpan() const {
-//     // Check if size < 2, throw NoSpanException
-//     // Find min and max elements
-//     // Hint: Use std::min_element and std::max_element
-//     // Or sort and use first/last
-//     // Return max - min
-// }
+void Span::addNumber(int number) {
+	if (numbers.size() >= N) {
+		throw ::SpanFullException();
+	}
+	numbers.push_back(number);
+}
 
-// TODO: Implement exception classes
-// const char* SpanFullException::what() const throw() {
-//     return "Span is full";
-// }
+unsigned int Span::shortestSpan() const {
+	if (numbers.size() < 2) {
+		throw ::NoSpanException();
+	}
+	std::vector<int> sortedNumbers = numbers;
+	std::sort(sortedNumbers.begin(), sortedNumbers.end());
+	unsigned int minSpan = UINT_MAX;
+	for (size_t i = 1; i < sortedNumbers.size(); ++i) {
+		unsigned int span = static_cast<unsigned int>(sortedNumbers[i] - sortedNumbers[i - 1]);
+		if (span < minSpan) {
+			minSpan = span;
+		}
+	}
+	return minSpan;
+}
+
+unsigned int Span::longestSpan() const {
+	if (numbers.size() < 2) {
+		throw ::NoSpanException();
+	}
+	std::vector<int> sortedNumbers = numbers;
+	std::sort(sortedNumbers.begin(), sortedNumbers.end());
+	return static_cast<unsigned int>(sortedNumbers.back() - sortedNumbers.front());
+}

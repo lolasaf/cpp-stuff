@@ -1,19 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/27 21:11:26 by wel-safa          #+#    #+#             */
+/*   Updated: 2026/01/27 21:31:37 by wel-safa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-// TODO: Include necessary headers
-// You'll need headers for containers and possibly algorithms
+#include <algorithm>
+#include <exception>
+#include <iterator>
 
-// TODO: Create a custom exception class if you want
-// Or use std::exception directly
+class NotFoundException : public std::exception {
+public:
+	const char* what() const throw() {
+		return "Value not found in container";
+	}
+};
 
-// TODO: Implement the easyfind function template
-// template <typename T>
-// Return type easyfind(T& container, int value) {
-//     // Hint: Use iterators to search through the container
-//     // Hint: Compare *it with value
-//     // Hint: If found, return the iterator (or the value)
-//     // Hint: If not found, throw an exception
-// }
+template <typename T>
+typename T::iterator easyfind(T& container, int value) {
+	typename T::iterator it = std::find(container.begin(), container.end(), value);
+	if (it == container.end()) {
+		throw NotFoundException();
+	}
+	return it;
+}
+
+template <typename T>
+typename T::const_iterator easyfind(const T& container, int value) {
+	typename T::const_iterator it = std::find(container.begin(), container.end(), value);
+	if (it == container.end()) {
+		throw NotFoundException();
+	}
+	return it;
+}
 
 #endif

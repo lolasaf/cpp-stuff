@@ -1,5 +1,15 @@
-// Optional: If you prefer to separate template implementation from declaration
-// Include this file at the end of MutantStack.hpp with: #include "MutantStack.tpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MutantStack.tpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/28 20:09:14 by wel-safa          #+#    #+#             */
+/*   Updated: 2026/01/28 20:21:56 by wel-safa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 // Note: Since MutantStack methods are mostly one-liners that access this->c,
 // you might prefer to keep everything in the header file.

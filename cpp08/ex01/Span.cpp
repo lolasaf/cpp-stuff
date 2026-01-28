@@ -6,7 +6,7 @@
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 21:41:39 by wel-safa          #+#    #+#             */
-/*   Updated: 2026/01/27 21:57:59 by wel-safa         ###   ########.fr       */
+/*   Updated: 2026/01/28 21:06:52 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ unsigned int Span::shortestSpan() const {
 	std::sort(sortedNumbers.begin(), sortedNumbers.end());
 	unsigned int minSpan = UINT_MAX;
 	for (size_t i = 1; i < sortedNumbers.size(); ++i) {
-		unsigned int span = static_cast<unsigned int>(sortedNumbers[i] - sortedNumbers[i - 1]);
+		// Use long to avoid integer overflow when subtracting INT_MIN from INT_MAX
+		long diff = static_cast<long>(sortedNumbers[i]) - static_cast<long>(sortedNumbers[i - 1]);
+		unsigned int span = static_cast<unsigned int>(diff);
 		if (span < minSpan) {
 			minSpan = span;
 		}
@@ -57,5 +59,7 @@ unsigned int Span::longestSpan() const {
 	}
 	std::vector<int> sortedNumbers = numbers;
 	std::sort(sortedNumbers.begin(), sortedNumbers.end());
-	return static_cast<unsigned int>(sortedNumbers.back() - sortedNumbers.front());
+	// Use long to avoid integer overflow when subtracting INT_MIN from INT_MAX
+	long diff = static_cast<long>(sortedNumbers.back()) - static_cast<long>(sortedNumbers.front());
+	return static_cast<unsigned int>(diff);
 }

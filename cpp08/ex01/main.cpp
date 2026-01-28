@@ -6,7 +6,7 @@
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 21:41:54 by wel-safa          #+#    #+#             */
-/*   Updated: 2026/01/27 22:29:19 by wel-safa         ###   ########.fr       */
+/*   Updated: 2026/01/28 21:03:59 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main()
 	Span oneSpan = Span(5);
 	oneSpan.addNumber(42);
 	try {
-		emptySpan.shortestSpan();
+		oneSpan.shortestSpan();
 	} catch (const NoSpanException& e) {
 		std::cout << e.what() << std::endl;
 	}
@@ -104,5 +104,15 @@ int main()
         std::cout << e.what() << std::endl;
     }
     
+	std::cout << std::endl << "=== Test 8: INT_MIN and INT_MAX ===" << std::endl;
+	Span intMinMaxSpan = Span(2);
+	intMinMaxSpan.addNumber(INT_MIN);
+	intMinMaxSpan.addNumber(INT_MAX);
+	try {
+		std::cout << "Shortest span: " << intMinMaxSpan.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << intMinMaxSpan.longestSpan() << std::endl;
+	} catch (const NoSpanException& e) {
+		std::cout << e.what() << std::endl;
+	}
     return 0;
 }

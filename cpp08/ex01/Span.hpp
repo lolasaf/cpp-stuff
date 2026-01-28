@@ -17,6 +17,7 @@
 #include <algorithm>
 #include <exception>
 #include <climits>
+#include <iterator>
 
 class Span {
 private:
@@ -32,6 +33,9 @@ public:
 	void addNumber(int number);
 	unsigned int shortestSpan() const;
 	unsigned int longestSpan() const;
+	
+	template <typename Iterator>
+	void addRange(Iterator begin, Iterator end);
 };
 
 
@@ -48,5 +52,16 @@ public:
 		return "Not enough numbers to find a span";
 	}
 };
+
+template <typename Iterator>
+void Span::addRange(Iterator begin, Iterator end) {
+	unsigned int distance = static_cast<unsigned int>(std::distance(begin, end));
+	
+	if (numbers.size() + distance > N) {
+		throw SpanFullException();
+	}
+	
+	numbers.insert(numbers.end(), begin, end);
+}
 
 #endif

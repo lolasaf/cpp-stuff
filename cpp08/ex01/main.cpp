@@ -6,7 +6,7 @@
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 21:41:54 by wel-safa          #+#    #+#             */
-/*   Updated: 2026/01/28 21:03:59 by wel-safa         ###   ########.fr       */
+/*   Updated: 2026/01/29 00:25:10 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
+#include <list>
+#include <climits>
 
 int main()
 {
@@ -114,5 +117,61 @@ int main()
 	} catch (const NoSpanException& e) {
 		std::cout << e.what() << std::endl;
 	}
+	
+	std::cout << std::endl << "=== Test 9: addRange() with iterators ===" << std::endl;
+	Span rangeSpan = Span(10);
+	
+	std::vector<int> vec;
+	vec.push_back(100);
+	vec.push_back(200);
+	vec.push_back(300);
+	rangeSpan.addRange(vec.begin(), vec.end());
+	std::cout << "Added 3 numbers from vector" << std::endl;
+	
+	std::list<int> lst;
+	lst.push_back(400);
+	lst.push_back(500);
+	rangeSpan.addRange(lst.begin(), lst.end());
+	std::cout << "Added 2 numbers from list" << std::endl;
+	
+	int arr[] = {600, 700, 800, 900, 1000};
+	rangeSpan.addRange(arr, arr + sizeof(arr) / sizeof(arr[0]));
+	std::cout << "Added 5 numbers from array" << std::endl;
+	
+	try {
+		std::cout << "Shortest span: " << rangeSpan.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << rangeSpan.longestSpan() << std::endl;
+	} catch (const NoSpanException& e) {
+		std::cout << e.what() << std::endl;
+	}
+	
+	std::cout << std::endl << "=== Test 10: addRange() exceptions ===" << std::endl;
+	Span smallSpan = Span(3);
+	std::vector<int> largeVec;
+	for (int i = 0; i < 5; ++i) {
+		largeVec.push_back(i);
+	}
+	try {
+		smallSpan.addRange(largeVec.begin(), largeVec.end());
+		std::cout << "Should not reach here!!" << std::endl;
+	} catch (const SpanFullException& e) {
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
+	
+	std::cout << std::endl << "=== Test 11: addRange() with Large Dataset ===" << std::endl;
+	Span largeRangeSpan = Span(5000);
+	std::vector<int> largeDataset;
+	for (int i = 0; i < 5000; ++i) {
+		largeDataset.push_back(i * 2);
+	}
+	largeRangeSpan.addRange(largeDataset.begin(), largeDataset.end());
+	std::cout << "Added 5000 numbers using addRange() in a single call" << std::endl;
+	try {
+		std::cout << "Shortest span: " << largeRangeSpan.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << largeRangeSpan.longestSpan() << std::endl;
+	} catch (const NoSpanException& e) {
+		std::cout << e.what() << std::endl;
+	}
+	
     return 0;
 }

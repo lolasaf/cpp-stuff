@@ -5,19 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/28 20:09:14 by wel-safa          #+#    #+#             */
-/*   Updated: 2026/01/28 20:21:56 by wel-safa         ###   ########.fr       */
+/*   Created: 2026/01/28 23:02:25 by wel-safa          #+#    #+#             */
+/*   Updated: 2026/01/28 23:13:33 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+template <typename T>
+MutantStack<T>::MutantStack() : std::stack<T>() {}
 
-// Note: Since MutantStack methods are mostly one-liners that access this->c,
-// you might prefer to keep everything in the header file.
-// This file is optional and only needed if you want to separate declarations from definitions.
+template <typename T>
+MutantStack<T>::MutantStack(const MutantStack& other) {
+	*this = other; 
+}
 
-// TODO: If you use this file, implement iterator methods here
-// template <typename T>
-// typename MutantStack<T>::iterator MutantStack<T>::begin() {
-//     return this->c.begin();
-// }
-// // etc.
+template <typename T>
+MutantStack<T>& MutantStack<T>::operator=(const MutantStack& other) {
+		if (this != &other) {
+			std::stack<T>::operator=(other);
+			// or this->c = other.c; // copy underlying stack container
+		}
+		return *this;
+}
+
+template <typename T>
+MutantStack<T>::~MutantStack() {};
+
+
+template <typename T>
+typename MutantStack<T>::iterator MutantStack<T>::begin() {
+    return this->c.begin();
+}
+
+template <typename T>
+typename MutantStack<T>::iterator MutantStack<T>::end() {
+	return this->c.end();
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator MutantStack<T>::begin() const {
+	return this->c.begin();
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator MutantStack<T>::end() const {
+	return this->c.end();
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rbegin() {
+	return this->c.rbegin();
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rend() {
+	return this->c.rend();
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rbegin() const {
+	return this->c.rbegin();
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rend() const {
+	return this->c.rend();
+}

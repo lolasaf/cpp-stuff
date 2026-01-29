@@ -1,0 +1,200 @@
+# C++ - Module 09
+## STL
+
+Summary:
+This document contains the exercises of Module 09 from C++ modules.
+
+Version: 3.1
+
+---
+
+## Contents
+
+I Introduction  
+II General rules  
+III Module-specific rules  
+IV AI Instructions  
+V Exercise 00: Bitcoin Exchange  
+VI Exercise 01: Reverse Polish Notation  
+VII Exercise 02: PmergeMe  
+VIII Submission and peer-evaluation  
+
+---
+
+## Chapter I
+### Introduction
+
+C++ is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes" (source: Wikipedia).
+
+The goal of these modules is to introduce you to Object-Oriented Programming.
+
+This will be the starting point of your C++ journey. Many languages are recommended to learn OOP. We decided to choose C++ since it’s derived from your old friend C.
+
+Because this is a complex language, and in order to keep things simple, your code will comply with the C++98 standard.
+
+We are aware modern C++ is way different in a lot of aspects. So if you want to become a proficient C++ developer, it’s up to you to go further after the 42 Common Core!
+
+---
+
+## Chapter II
+### General rules
+
+#### Compiling
+• Compile your code with c++ and the flags -Wall -Wextra -Werror  
+• Your code should still compile if you add the flag -std=c++98  
+
+#### Formatting and naming conventions
+• The exercise directories will be named this way: ex00, ex01, ... , exn  
+• Name your files, classes, functions, member functions and attributes as required in the guidelines.  
+• Write class names in UpperCamelCase format. Files containing class code will always be named according to the class name.  
+• Unless specified otherwise, every output message must end with a newline character and be displayed to the standard output.  
+• Goodbye Norminette! No coding style is enforced in the C++ modules. You can follow your favorite one. But keep in mind that code your peer evaluators can’t understand is code they can’t grade. Do your best to write clean and readable code.  
+
+#### Allowed/Forbidden
+You are not coding in C anymore. Time to C++! Therefore:
+
+• You are allowed to use almost everything from the standard library.  
+• However, you can’t use any other external library. It means C++11 (and derived forms) and Boost libraries are forbidden.  
+• The following functions are forbidden too: printf(), alloc() and free(). If you use them, your grade will be 0 and that’s it.  
+
+• Note that unless explicitly stated otherwise, the using namespace <ns_name> and friend keywords are forbidden. Otherwise, your grade will be -42.  
+• You are allowed to use the STL only in Modules 08 and 09.  
+
+#### A few design requirements
+• Memory leakage occurs in C++ too. When you allocate memory (by using the new keyword), you must avoid memory leaks.  
+• From Module 02 to Module 09, your classes must be designed in the Orthodox Canonical Form, except when explicitly stated otherwise.  
+• Any function implementation put in a header file (except for function templates) means 0 to the exercise.  
+• You should be able to use each of your headers independently from others. Thus, they must include all the dependencies they need. However, you must avoid the problem of double inclusion by adding include guards. Otherwise, your grade will be 0.  
+
+#### Read me
+• You can add some additional files if you need to.  
+• Sometimes, the guidelines of an exercise look short but the examples can show requirements that are not explicitly written in the instructions.  
+• Read each module completely before starting! Really, do it.  
+• By Odin, by Thor! Use your brain!!!  
+
+---
+
+## Chapter III
+### Module-specific rules
+
+It is mandatory to use the standard containers to perform each exercise in this module.
+
+Once a container is used you cannot use it for the rest of the module.
+
+You must use at least one container for each exercise with the exception of exercise 02 which requires the use of two containers.
+
+You must submit a Makefile for each program which will compile your source files to the required output with the flags -Wall, -Wextra and -Werror.
+
+Your Makefile must not relink and must at least contain the rules $(NAME), all, clean, fclean and re.
+
+---
+
+## Chapter IV
+### AI Instructions
+
+● Context
+
+This project is designed to help you discover the fundamental building blocks of your 42 training.
+
+To properly anchor key knowledge and skills, it’s essential to adopt a thoughtful approach to using AI tools and support.
+
+True foundational learning requires genuine intellectual effort — through challenge, repetition, and peer-learning exchanges.
+
+For a more complete overview of our stance on AI — as a learning tool, as part of the 42 training, and as an expectation in the job market — please refer to the dedicated FAQ on the intranet.
+
+● Main message
+
+☛ Build strong foundations without shortcuts.  
+☛ Really develop tech & power skills.  
+☛ Experience real peer-learning, start learning how to learn and solve new problems.  
+☛ The learning journey is more important than the result.  
+☛ Learn about the risks associated with AI, and develop effective control practices and countermeasures to avoid common pitfalls.  
+
+● Learner rules:
+• You should apply reasoning to your assigned tasks, especially before turning to AI.  
+• You should not ask for direct answers to the AI.  
+• You should learn about 42 global approach on AI.  
+
+---
+
+## Chapter V
+### Exercise 00: Bitcoin Exchange
+
+Exercise: 00  
+Bitcoin Exchange  
+
+Directory: ex00/  
+Files to Submit: Makefile, main.cpp, BitcoinExchange.{cpp, hpp}  
+Forbidden: None  
+
+You have to create a program which outputs the value of a certain amount of bitcoin on a certain date.
+
+This program must use a database in csv format which will represent bitcoin price over time. This database is provided with this subject.
+
+The program will take as input a second database, storing the different prices/dates to evaluate.
+
+Rules:
+• The program name is btc.  
+• Your program must take a file as an argument.  
+• Each line in this file must use the following format: "date | value".  
+• A valid date will always be in the following format: Year-Month-Day.  
+• A valid value must be either a float or a positive integer, between 0 and 1000.  
+
+If the date used in the input does not exist in your DB then you must use the closest date contained in your DB. Be careful to use the lower date and not the upper one.
+
+You must use at least one container in your code to validate this exercise.
+
+---
+
+## Chapter VI
+### Exercise 01: Reverse Polish Notation
+
+Exercise: 01  
+RPN  
+
+Directory: ex01/  
+Files to Submit: Makefile, main.cpp, RPN.{cpp, hpp}  
+Forbidden: None  
+
+Your program must take an inverted Polish mathematical expression as an argument.
+
+The numbers used in this operation and passed as arguments will always be less than 10.
+
+Your program must process this expression and output the correct result on the standard output.
+
+Your program must be able to handle operations with these tokens: + - / *.
+
+If an error occurs during the execution of the program an error message should be displayed on the standard error.
+
+You must use at least one container in your code to validate this exercise.
+
+---
+
+## Chapter VII
+### Exercise 02: PmergeMe
+
+Exercise: 02  
+PmergeMe  
+
+Directory: ex02/  
+Files to Submit: Makefile, main.cpp, PmergeMe.{cpp, hpp}  
+Forbidden: None  
+
+Your program must use the merge-insert sort algorithm (Ford-Johnson).
+
+You must use at least two different containers.
+
+Your program must be able to handle at least 3000 different integers.
+
+You must display:
+• The unsorted sequence  
+• The sorted sequence  
+• The time taken with the first container  
+• The time taken with the second container  
+
+---
+
+## Chapter VIII
+### Submission and peer-evaluation
+
+Turn in your assignment in your Git repository as usual. Only the work inside your repository will be evaluated during the defense.

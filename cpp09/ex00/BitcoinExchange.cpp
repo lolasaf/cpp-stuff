@@ -6,7 +6,7 @@
 /*   By: wel-safa <wel-safa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 15:27:49 by wel-safa          #+#    #+#             */
-/*   Updated: 2026/02/06 10:55:29 by wel-safa         ###   ########.fr       */
+/*   Updated: 2026/02/10 16:55:03 by wel-safa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-
+#include <ctime>
 
 BitcoinExchange::BitcoinExchange(): _database() {}
 
@@ -125,7 +125,17 @@ std::string &BitcoinExchange::_validateDate(std::string &date) {
         if (day > 29 || (day == 29 && !isLeapYear))
             throw std::runtime_error("Error: bad input (invalid date) => " + date);
     }
-    return date;
+    // check if date is in the future
+    time_t now = time(NULL);
+    struct tm *today = localtime(&now);
+    int curYear  = today->tm_year + 1900;
+    int curMonth = today->tm_mon + 1;
+    int curDay   = today->tm_mday;
+    if (year > curYear
+        || (year == curYear && month > curMonth)
+        || (year == curYear && month == curMonth && day > curDay))
+        throw std::runtime_error("Error: bad input (future date) => " + date);
+return date;
 }
 
 void BitcoinExchange::_executeInput(const std::string &filename) {
